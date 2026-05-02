@@ -20,13 +20,13 @@ const socialLinks = [
   {
     name: "Instagram",
     icon: Instagram,
-    url: "https://instagram.com/brightvisioninfotech",
+    url: "https://www.instagram.com/brightvisioninfotech?igsh=MTBmeGprNTJ2YmY3bA==",
     color: "#E4405F",
   },
   {
     name: "LinkedIn",
     icon: Linkedin,
-    url: "https://linkedin.com/company/brightvisioninfotech",
+    url: "https://in.linkedin.com/company/brightvisioninfotech",
     color: "#0A66C2",
   },
 ];

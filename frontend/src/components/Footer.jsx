@@ -19,8 +19,8 @@ const Footer = ({ onNavigate }) => {
 
   const socialLinks = [
     { name: "WhatsApp", icon: MessageCircle, url: "https://wa.me/919811810364", color: "#25D366" },
-    { name: "Instagram", icon: Instagram, url: "https://instagram.com/brightvisioninfotech", color: "#E4405F" },
-    { name: "LinkedIn", icon: Linkedin, url: "https://linkedin.com/company/brightvisioninfotech", color: "#0A66C2" },
+    { name: "Instagram", icon: Instagram, url: "https://www.instagram.com/brightvisioninfotech?igsh=MTBmeGprNTJ2YmY3bA==", color: "#E4405F" },
+    { name: "LinkedIn", icon: Linkedin, url: "https://in.linkedin.com/company/brightvisioninfotech", color: "#0A66C2" },
   ];
 
   return (

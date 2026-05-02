@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -14,12 +14,14 @@
     --bvi-text-secondary: #475569;
 }
 
+/* Premium Pen Cursor */
 * {
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><defs><linearGradient id="penGrad" x1="0%25" y1="0%25" x2="100%25" y2="100%25"><stop offset="0%25" style="stop-color:%230B2545"/><stop offset="100%25" style="stop-color:%23028090"/></linearGradient></defs><path d="M6 26l2-8L22 4l4 4L12 22l-8 2l2 2z" fill="url(%23penGrad)"/><path d="M22 4l4 4" stroke="%238ECAE6" stroke-width="2" stroke-linecap="round"/><circle cx="7" cy="25" r="2" fill="%23028090"/></svg>') 2 30, auto;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><defs><linearGradient id="penGrad" x1="0%25" y1="0%25" x2="100%25" y2="100%25"><stop offset="0%25" style="stop-color:%230B2545"/><stop offset="100%25" style="stop-color:%23028090"/></linearGradient></defs><path d="M5 23l2-7L19 4l4 4L11 20l-7 2l1 1z" fill="url(%23penGrad)" stroke="%23fff" stroke-width="0.5"/><path d="M19 4l4 4" stroke="%238ECAE6" stroke-width="2" stroke-linecap="round"/><circle cx="6" cy="22" r="1.5" fill="%23028090"/></svg>') 2 26, auto;
 }
 
-a, button, [role="button"], input, textarea, select {
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="36" viewBox="0 0 28 36"><defs><linearGradient id="bookmarkGrad" x1="0%25" y1="0%25" x2="100%25" y2="100%25"><stop offset="0%25" style="stop-color:%23028090"/><stop offset="100%25" style="stop-color:%230B2545"/></linearGradient></defs><path d="M4 0h20a4 4 0 0 1 4 4v28l-14-8-14 8V4a4 4 0 0 1 4-4z" fill="url(%23bookmarkGrad)"/><path d="M8 8h12M8 14h8" stroke="%23fff" stroke-width="2" stroke-linecap="round"/></svg>') 14 0, pointer;
+/* Bookmark Cursor for interactive elements */
+a, button, [role="button"], input, textarea, select, .cursor-pointer {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="32" viewBox="0 0 24 32"><defs><linearGradient id="bookmarkGrad" x1="0%25" y1="0%25" x2="100%25" y2="100%25"><stop offset="0%25" style="stop-color:%23028090"/><stop offset="100%25" style="stop-color:%230B2545"/></linearGradient></defs><path d="M2 0h20a2 2 0 0 1 2 2v26l-12-7-12 7V2a2 2 0 0 1 2-2z" fill="url(%23bookmarkGrad)"/><path d="M6 6h12M6 11h8" stroke="%23fff" stroke-width="1.5" stroke-linecap="round" opacity="0.8"/></svg>') 12 0, pointer;
 }
 
 html {
