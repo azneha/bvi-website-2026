@@ -10,6 +10,7 @@ import ResultsSection from "@/components/ResultsSection";
 import NewsSection from "@/components/NewsSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import CursorFollower from "@/components/CursorFollower";
 
 const HomePage = () => {
   const [activeSection, setActiveSection] = useState("home");
@@ -44,6 +45,7 @@ const HomePage = () => {
 
   return (
     <div data-testid="homepage" className="min-h-screen bg-white overflow-x-hidden">
+      <CursorFollower />
       <Navbar activeSection={activeSection} onNavigate={scrollToSection} />
       
       <main>

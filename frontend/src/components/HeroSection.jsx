@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play, Sparkles, Zap, Target, Star } from "lucide-react";
+import { ArrowRight, Sparkles, Zap, Target, Star } from "lucide-react";
 
 const floatingElements = [
   { icon: Zap, color: "#00C9A7", position: "top-[20%] left-[8%]", delay: 0 },
@@ -139,20 +139,10 @@ const HeroSection = ({ onExplore }) => {
               onClick={onExplore}
               data-testid="hero-explore-btn"
               size="lg"
-              className="bg-gradient-to-r from-[#00C9A7] to-[#028090] hover:opacity-90 text-white px-8 py-7 text-lg font-semibold shadow-xl shadow-[#028090]/30 hover:shadow-2xl transition-all duration-300 rounded-2xl group"
+              className="bg-gradient-to-r from-[#00C9A7] to-[#028090] hover:opacity-90 text-white px-10 py-7 text-lg font-semibold shadow-xl shadow-[#028090]/30 hover:shadow-2xl transition-all duration-300 rounded-2xl group"
             >
               Explore Courses
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button
-              onClick={onExplore}
-              data-testid="hero-video-btn"
-              size="lg"
-              variant="outline"
-              className="bg-white/50 backdrop-blur-sm border-2 border-[#0B2545]/20 text-[#0B2545] hover:bg-white px-8 py-7 text-lg font-semibold transition-all duration-300 rounded-2xl group"
-            >
-              <Play className="mr-2 w-5 h-5 group-hover:scale-110 transition-transform" />
-              Watch Video
             </Button>
           </motion.div>
 
