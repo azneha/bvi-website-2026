@@ -1,0 +1,77 @@
+{
+  "theme": "light",
+  "archetype": "Swiss & High-Contrast (Academic Variant)",
+  "colors": {
+    "background": "#FFFFFF",
+    "surface": "#F8FAFC",
+    "primary": "#0B2545",
+    "secondary": "#8ECAE6",
+    "accent": "#028090",
+    "text_primary": "#0F172A",
+    "text_secondary": "#475569"
+  },
+  "typography": {
+    "headings": "Outfit",
+    "body": "IBM Plex Sans",
+    "scale": {
+      "h1": "text-4xl sm:text-5xl lg:text-6xl tracking-tight font-bold",
+      "h2": "text-2xl sm:text-3xl lg:text-4xl tracking-tight font-semibold",
+      "h3": "text-xl sm:text-2xl font-medium",
+      "body": "text-base leading-relaxed",
+      "small": "text-sm tracking-wide"
+    }
+  },
+  "spacing_and_layout": {
+    "generous_spacing": "py-24 px-6 md:px-12",
+    "bento_grid": "grid grid-cols-1 md:grid-cols-12 gap-8"
+  },
+  "ui_features": {
+    "cursor": "Apply a global custom cursor using an inline SVG of a pen in index.css. Example: cursor: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"%23028090\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z\"></path></svg>') 0 24, auto;",
+    "bookmark_tabs": "Navigation links should visually resemble bookmarks on hover/active states. Use CSS clip-path on an absolute pseudo-element: clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%).",
+    "smooth_scrolling": "Use lenis library for premium momentum scrolling.",
+    "whatsapp_button": "Fixed floating action button in the bottom-right corner using the teal accent color."
+  },
+  "components": {
+    "hero": {
+      "animation": "Subtle Book Opening Animation: Overlay two solid primary-color motion.div elements (w-1/2 each). The left one rotates left (transformOrigin: 'left', rotateY: -90), the right one rotates right (transformOrigin: 'right', rotateY: 90) on mount using framer-motion, revealing the hero content.",
+      "layout": "High-impact hero section with a gradient text or solid typography for 'Shaping Futures Since 1997'. Background image should be visible with a bg-white/80 or gradient overlay to ensure text contrast."
+    },
+    "about_us": "Asymmetric split layout. Left: High-quality image of the mentor with a teal accent border. Right: Staggered typography telling the story of Bright Vision Infotech.",
+    "why_choose_us": "Bento Grid layout (grid-cols-1 md:grid-cols-3 or md:grid-cols-12). Highlight experience, trustworthiness, and academic excellence with clean icons (lucide-react).",
+    "courses_offered": "Grid Borders style. Avoid generic cards; use a grid with 1px border-r and border-b. Content should cover Classes 9-12, NEET, JEE, and Certifications.",
+    "mode_of_learning": "Minimalist comparison (Online vs Offline) using generous spacing and subtle background color differences (white vs surface).",
+    "testimonials": "Editorial Ribbon style. Use 'react-fast-marquee' for a slow, continuous scroll of student reviews.",
+    "contact": "Clean, highly structured form using Shadcn components. No heavy shadows, just 1px borders. Include WhatsApp contact info alongside.",
+    "footer": "High-contrast dark footer using primary color (#0B2545) with white text. Minimal and professional."
+  },
+  "image_urls": {
+    "hero_background": {
+      "url": "https://static.prod-images.emergentagent.com/jobs/493ad79b-9b59-441a-9b2a-38fce3e87d8f/images/a3540ccfd58db56e1ffe30c5fc3ce1eec9e12a9531b217ff0f249a822a9cfe66.png",
+      "description": "Professional modern classroom background"
+    },
+    "about_us_mentor": {
+      "url": "https://static.prod-images.emergentagent.com/jobs/493ad79b-9b59-441a-9b2a-38fce3e87d8f/images/4269e6e6e055a5aa43a17333b168b175527e346cc3b0524b1a30376d8cdb95b6.png",
+      "description": "Experienced mentor pointing at a notebook"
+    },
+    "courses_books": {
+      "url": "https://images.pexels.com/photos/6561514/pexels-photo-6561514.jpeg",
+      "description": "Stack of books for courses visual"
+    },
+    "testimonial_avatar": {
+      "url": "https://images.unsplash.com/photo-1770235622881-7c3b96af6972?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODF8MHwxfHNlYXJjaHwzfHxzdHVkZW50cyUyMHN0dWR5aW5nJTIwbW9kZXJuJTIwY2xhc3Nyb29tfGVufDB8fHx8MTc3Nzc0MTAwMXww&ixlib=rb-4.1.0&q=85",
+      "description": "Student portrait"
+    }
+  },
+  "instructions_to_main_agent": [
+    "You MUST read this entire file carefully before coding.",
+    "Install required dependencies: framer-motion, lenis, lucide-react, react-fast-marquee, @radix-ui/react-slot, clsx, tailwind-merge.",
+    "Implement the 'Book Opening' hero animation precisely as described in the components section using Framer Motion.",
+    "Apply the custom pen cursor globally in your CSS.",
+    "Implement the bookmark navigation tabs with CSS clip-path or absolute positioned shapes.",
+    "Strictly follow the color palette (White, #0B2545, #8ECAE6, #028090).",
+    "Ensure all fonts are imported correctly (Outfit for headings, IBM Plex Sans for body).",
+    "Do NOT use heavy shadows or glowing/magical effects. Keep it subtle, academic, and professional.",
+    "All interactive elements MUST have a data-testid attribute.",
+    "Implement the floating WhatsApp chat button."
+  ]
+}
