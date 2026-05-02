@@ -1,0 +1,35 @@
+{
+  "summary": "Full regression of redesigned Bright Vision Infotech site (frontend + backend). All 11 requested test items passed. Backend: 6/6 pytest passing. Frontend: hero (no books), nav (Director/Results/News present), animated counters (25+/5,000+/1,000+/10-20), Director S.S. Shadman section, Courses (4 categories), News + LIVE ticker, animated phone numbers (011-44744746, 011-23243036), contact form POST, Instagram + LinkedIn social links, NO WhatsApp anywhere, mobile menu working, scroll-to-top works.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Global (preview env)", "issues": ["The fixed scroll-to-top button (bottom-right, z-50) is visually overlapped by the platform's 'Made with Emergent' badge in the preview/staging environment. The button itself functions correctly (JS .click() scrolls to top); however page.click() is intercepted by the badge anchor. This is a preview-only artifact and won't impact production, but consider repositioning the button (e.g., bottom-24 or left-6) for safer UX in any environment that may overlay corner badges."]}
+    ]
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_contact_api.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "ContactSection: failed POST shows only generic toast; consider surfacing backend-provided error message for better debuggability.",
+    "Footer & ContactSection still duplicate Instagram/LinkedIn URLs; extract to a shared constant (src/lib/socials.js).",
+    "StatsSection AnimatedCounter: increment uses Math.ceil(end/50) which can overshoot small values (e.g., value=20 increments by 1 over time but works); fine for current values but document/convert to time-based easing for robustness.",
+    "ContactSection AnimatedPhoneNumber useEffect returns cleanup from inside setTimeout — outer effect cleanup never clears the interval if component unmounts mid-typing. Move interval ref outside setTimeout and clear in outer cleanup.",
+    "server.py: contact submission stores in DB even when payload validation passes but send fails; status field captures this correctly. Good. However, no rate-limiting on /api/contact — consider adding to prevent spam (Resend integration is mocked anyway right now).",
+    "Resend email sending uses asyncio.to_thread but resend.api_key is empty in current env; logs warn 'stored_only'. MOCKED — no actual email is sent. Not a code bug, just documenting current behavior."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "100% (6/6)", "frontend": "100% (11/11 requested items)"},
+  "test_credentials": "N/A — no auth in app",
+  "seed_data_creation": "Created 2 TEST_-prefixed contact submissions via pytest and 1 via UI form submission. These will accumulate in MongoDB; consider adding a teardown if running in shared env.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Tested at https://bvi-institute.preview.emergentagent.com. Backend pytest path: /app/backend/tests/test_contact_api.py (6 tests, all pass). Frontend verified: hero section renders gradient title 'Where Bright Futures Begin' (no book images at all — no <img> tags inside hero), nav items include Director/Results/News (data-testid=nav-{id} and mobile-nav-{id}), Stats counters animate to 25+/5,000+/1,000+/10-20, Director section shows S.S. Shadman with achievement badges, Courses section has 4 categories (Classes 9-10, Classes 11-12, NEET, JEE), News section shows 4 cards plus a LIVE ticker that scrolls horizontally, ContactSection shows AnimatedPhoneNumber components for 011-44744746 and 011-23243036, Instagram href = https://www.instagram.com/brightvisioninfotech?igsh=MTBmeGprNTJ2YmY3bA== and LinkedIn href = https://in.linkedin.com/company/brightvisioninfotech (in both ContactSection and Footer), NO wa.me / whatsapp references found anywhere on page (regex confirmed 0 matches). Form submit successfully POSTs to /api/contact and shows 'Message Sent!' success view. Mobile (390x844) hamburger menu opens listing all 7 nav items + Admission Open CTA. Scroll-to-top (data-testid=scroll-to-top) works (JS click → scrollY=0); Playwright direct click is blocked by platform-overlay 'Made with Emergent' badge (preview-only).",
+  "rca of the issue": "N/A — no functional bugs identified."
+}

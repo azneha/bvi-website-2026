@@ -1,33 +1,23 @@
 import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import StatsSection from "@/components/StatsSection";
 import AboutSection from "@/components/AboutSection";
+import DirectorSection from "@/components/DirectorSection";
 import WhyChooseUsSection from "@/components/WhyChooseUsSection";
 import CoursesSection from "@/components/CoursesSection";
-import LearningModeSection from "@/components/LearningModeSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
+import ResultsSection from "@/components/ResultsSection";
+import NewsSection from "@/components/NewsSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/WhatsAppButton";
-import BookOpenAnimation from "@/components/BookOpenAnimation";
 
 const HomePage = () => {
-  const [showContent, setShowContent] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
-    // Show content after book animation
-    const timer = setTimeout(() => {
-      setShowContent(true);
-    }, 1500);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "about", "why-us", "courses", "learning", "testimonials", "contact"];
-      const scrollPosition = window.scrollY + 100;
+      const sections = ["home", "about", "director", "courses", "why-us", "results", "news", "contact"];
+      const scrollPosition = window.scrollY + 150;
 
       for (const section of sections) {
         const element = document.getElementById(section);
@@ -53,27 +43,22 @@ const HomePage = () => {
   };
 
   return (
-    <div data-testid="homepage" className="min-h-screen bg-white">
-      <BookOpenAnimation onComplete={() => setShowContent(true)} />
+    <div data-testid="homepage" className="min-h-screen bg-white overflow-x-hidden">
+      <Navbar activeSection={activeSection} onNavigate={scrollToSection} />
       
-      {showContent && (
-        <>
-          <Navbar activeSection={activeSection} onNavigate={scrollToSection} />
-          
-          <main>
-            <HeroSection onExplore={() => scrollToSection("courses")} onContact={() => scrollToSection("contact")} />
-            <AboutSection />
-            <WhyChooseUsSection />
-            <CoursesSection />
-            <LearningModeSection />
-            <TestimonialsSection />
-            <ContactSection />
-          </main>
-          
-          <Footer onNavigate={scrollToSection} />
-          <WhatsAppButton />
-        </>
-      )}
+      <main>
+        <HeroSection onExplore={() => scrollToSection("courses")} />
+        <StatsSection />
+        <AboutSection />
+        <DirectorSection />
+        <CoursesSection />
+        <WhyChooseUsSection />
+        <ResultsSection />
+        <NewsSection />
+        <ContactSection />
+      </main>
+      
+      <Footer onNavigate={scrollToSection} />
     </div>
   );
 };

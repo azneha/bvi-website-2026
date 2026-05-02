@@ -1,48 +1,39 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Calculator, FlaskConical, Atom, Heart, BookOpen, TrendingUp, Target, Award } from "lucide-react";
+import { Calculator, Atom, FlaskConical, Heart, BookOpen, TrendingUp, Target, Award, ArrowRight } from "lucide-react";
 
 const courseCategories = [
   {
     title: "Classes 9-10",
     description: "Strong foundation for board exams",
-    courses: [
-      { name: "Mathematics", icon: Calculator },
-      { name: "Science", icon: FlaskConical },
-    ],
-    color: "#0B2545",
+    courses: ["Mathematics", "Science"],
+    icon: Calculator,
+    color: "#00C9A7",
+    gradient: "from-[#00C9A7] to-[#028090]",
   },
   {
     title: "Classes 11-12",
     description: "Advanced concepts & board preparation",
-    courses: [
-      { name: "Physics", icon: Atom },
-      { name: "Chemistry", icon: FlaskConical },
-      { name: "Mathematics", icon: Calculator },
-      { name: "Biology", icon: Heart },
-      { name: "Accountancy", icon: BookOpen },
-      { name: "Economics", icon: TrendingUp },
-    ],
+    courses: ["Physics", "Chemistry", "Mathematics", "Biology", "Accountancy", "Economics"],
+    icon: Atom,
     color: "#028090",
+    gradient: "from-[#028090] to-[#0B2545]",
   },
   {
-    title: "Competitive Exams",
-    description: "Expert preparation for entrance tests",
-    courses: [
-      { name: "NEET Preparation", icon: Target },
-      { name: "JEE Preparation", icon: Award },
-    ],
-    color: "#8ECAE6",
+    title: "NEET Preparation",
+    description: "Medical entrance exam coaching",
+    courses: ["Physics", "Chemistry", "Biology"],
+    icon: Heart,
+    color: "#0B2545",
+    gradient: "from-[#0B2545] to-[#134074]",
   },
   {
-    title: "Certification Courses",
-    description: "Skill-based professional programs",
-    courses: [
-      { name: "Online Programs", icon: BookOpen },
-      { name: "Offline Programs", icon: Award },
-    ],
-    color: "#134074",
+    title: "JEE Preparation",
+    description: "Engineering entrance exam coaching",
+    courses: ["Physics", "Chemistry", "Mathematics"],
+    icon: Target,
+    color: "#00C9A7",
+    gradient: "from-[#134074] to-[#00C9A7]",
   },
 ];
 
@@ -55,99 +46,81 @@ const CoursesSection = () => {
       id="courses"
       ref={ref}
       data-testid="courses-section"
-      className="py-20 md:py-28 bg-white relative overflow-hidden"
+      className="py-24 bg-white relative overflow-hidden"
     >
       {/* Background decoration */}
-      <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#E2E8F0] to-transparent" />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
+      <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-[#00C9A7]/5 to-transparent rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-[#028090]/5 to-transparent rounded-full blur-3xl" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="text-[#028090] font-medium text-sm tracking-wider uppercase">
+          <span className="inline-flex items-center gap-2 text-[#028090] font-semibold text-sm tracking-wider uppercase mb-4">
+            <BookOpen className="w-4 h-4" />
             Our Programs
           </span>
-          <h2
-            className="text-3xl sm:text-4xl font-bold text-[#0B2545] mt-2"
-            style={{ fontFamily: 'Outfit, sans-serif' }}
-          >
+          <h2 className="text-4xl sm:text-5xl font-bold text-[#0B2545]" style={{ fontFamily: 'Outfit, sans-serif' }}>
             Courses Offered
           </h2>
           <p className="text-[#475569] mt-4 max-w-2xl mx-auto">
-            Comprehensive curriculum designed to help students excel in academics 
-            and competitive examinations.
+            Comprehensive curriculum designed to help students excel in academics and competitive examinations.
           </p>
         </motion.div>
 
-        {/* Course Categories Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
-          {courseCategories.map((category, categoryIndex) => (
+        {/* Course Cards */}
+        <div className="grid md:grid-cols-2 gap-8">
+          {courseCategories.map((category, index) => (
             <motion.div
               key={category.title}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: categoryIndex * 0.15 }}
-              data-testid={`course-category-${categoryIndex}`}
-              className="bg-white rounded-3xl overflow-hidden border border-[#E2E8F0] shadow-sm hover:shadow-xl transition-all duration-300 group"
+              transition={{ duration: 0.6, delay: index * 0.15 }}
+              data-testid={`course-category-${index}`}
+              className="group"
             >
-              {/* Category Header */}
-              <div 
-                className="p-6 text-white relative overflow-hidden"
-                style={{ background: `linear-gradient(135deg, ${category.color} 0%, ${category.color}dd 100%)` }}
-              >
-                <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2" />
-                <h3 className="text-xl font-bold relative z-10" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                  {category.title}
-                </h3>
-                <p className="text-sm opacity-90 mt-1 relative z-10">{category.description}</p>
-              </div>
-
-              {/* Courses List */}
-              <div className="p-6">
-                <div className="grid grid-cols-2 gap-3">
-                  {category.courses.map((course, courseIndex) => (
-                    <div
-                      key={course.name}
-                      data-testid={`course-item-${categoryIndex}-${courseIndex}`}
-                      className="flex items-center gap-3 p-3 bg-[#F8FAFC] rounded-xl border border-transparent hover:border-[#028090]/20 hover:bg-white hover:shadow-md transition-all duration-300 group/item"
-                    >
-                      <div 
-                        className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors duration-300"
-                        style={{ backgroundColor: `${category.color}15` }}
-                      >
-                        <course.icon className="w-4 h-4" style={{ color: category.color }} />
-                      </div>
-                      <span className="text-sm font-medium text-[#0B2545]">{course.name}</span>
+              <div className="bg-white rounded-3xl border border-[#E2E8F0] shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden h-full">
+                {/* Header */}
+                <div className={`bg-gradient-to-r ${category.gradient} p-6 relative overflow-hidden`}>
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2" />
+                  <div className="relative z-10 flex items-center justify-between">
+                    <div>
+                      <h3 className="text-2xl font-bold text-white mb-1" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                        {category.title}
+                      </h3>
+                      <p className="text-white/80 text-sm">{category.description}</p>
                     </div>
-                  ))}
+                    <div className="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                      <category.icon className="w-7 h-7 text-white" />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Courses */}
+                <div className="p-6">
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {category.courses.map((course, i) => (
+                      <span
+                        key={i}
+                        className="px-4 py-2 bg-[#F8FAFC] rounded-xl text-sm font-medium text-[#0B2545] border border-[#E2E8F0] hover:border-[#028090] hover:bg-[#028090]/5 transition-all"
+                      >
+                        {course}
+                      </span>
+                    ))}
+                  </div>
+                  <button className="flex items-center gap-2 text-[#028090] font-semibold group/btn">
+                    Learn More
+                    <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                  </button>
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
-
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          className="text-center mt-12"
-        >
-          <p className="text-[#475569] mb-4">
-            Want to know more about our courses and fees?
-          </p>
-          <a
-            href="#contact"
-            data-testid="courses-enquire-link"
-            className="inline-flex items-center gap-2 text-[#028090] font-medium hover:underline"
-          >
-            Get in touch with us
-            <span>→</span>
-          </a>
-        </motion.div>
       </div>
     </section>
   );
