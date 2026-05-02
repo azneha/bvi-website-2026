@@ -1,34 +1,134 @@
-.App-logo {
-    height: 40vmin;
+/* App specific styles */
+.App {
+    min-height: 100vh;
+}
+
+/* Hero book animation container */
+.book-cover {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 50;
     pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
+.book-page-left,
+.book-page-right {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(135deg, #0B2545 0%, #134074 100%);
+}
+
+.book-page-left {
+    left: 0;
+    transform-origin: right center;
+}
+
+.book-page-right {
+    right: 0;
+    transform-origin: left center;
+}
+
+/* Course card hover effect */
+.course-card {
+    transition: all 0.3s ease;
+}
+
+.course-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px -8px rgba(11, 37, 69, 0.15);
+}
+
+/* Testimonial card */
+.testimonial-card {
+    background: white;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    padding: 24px;
+    margin: 0 16px;
+    min-width: 320px;
+    max-width: 400px;
+}
+
+/* Contact form */
+.contact-form input,
+.contact-form textarea {
+    transition: all 0.3s ease;
+}
+
+/* Section backgrounds */
+.section-surface {
+    background-color: #F8FAFC;
+}
+
+/* Grid borders style for courses */
+.grid-border-item {
+    border-right: 1px solid #E2E8F0;
+    border-bottom: 1px solid #E2E8F0;
+}
+
+.grid-border-item:nth-child(3n) {
+    border-right: none;
+}
+
+@media (max-width: 768px) {
+    .grid-border-item:nth-child(2n) {
+        border-right: none;
+    }
+    .grid-border-item:nth-child(3n) {
+        border-right: 1px solid #E2E8F0;
     }
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+@media (max-width: 640px) {
+    .grid-border-item {
+        border-right: none;
+    }
 }
 
-.App-link {
-    color: #61dafb;
+/* Navbar shadow on scroll */
+.navbar-scrolled {
+    box-shadow: 0 4px 12px -2px rgba(11, 37, 69, 0.08);
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+/* Stats counter */
+.stat-item {
+    text-align: center;
+    padding: 20px;
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #0B2545;
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: #475569;
+    margin-top: 8px;
+}
+
+/* Mode of learning cards */
+.learning-mode-card {
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.learning-mode-card:hover {
+    border-color: #028090;
+}
+
+/* Footer link hover */
+.footer-link {
+    transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+    color: #8ECAE6;
 }
