@@ -11,6 +11,7 @@ import NewsSection from "@/components/NewsSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import CursorFollower from "@/components/CursorFollower";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const HomePage = () => {
   const [activeSection, setActiveSection] = useState("home");
@@ -61,6 +62,7 @@ const HomePage = () => {
       </main>
       
       <Footer onNavigate={scrollToSection} />
+      <WhatsAppButton />
     </div>
   );
 };

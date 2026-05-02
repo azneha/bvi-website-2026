@@ -1,78 +1,46 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { GraduationCap, Users, Monitor, Target, Award, Lightbulb, Heart, Zap, CheckCircle, XCircle } from "lucide-react";
+import { Sparkles } from "lucide-react";
 
-const features = [
-  {
-    icon: GraduationCap,
-    title: "PhD Qualified Faculty",
-    description: "Our director holds a PhD in Mathematics. Teachers with 10-20+ years of experience.",
-    color: "#00C9A7",
-    hoverColor: "#10B981",
-  },
-  {
-    icon: Lightbulb,
-    title: "99/100 Student Scores",
-    description: "Our students consistently score 99/100 in Mathematics. Proven excellence.",
-    color: "#3B82F6",
-    hoverColor: "#2563EB",
-  },
-  {
-    icon: Users,
-    title: "Personal Attention",
-    description: "Small batch sizes ensure individual focus on every student's progress.",
-    color: "#EF4444",
-    hoverColor: "#DC2626",
-  },
-  {
-    icon: Monitor,
-    title: "Technology + Experience",
-    description: "Modern tech tools combined with decades of teaching expertise.",
-    color: "#F59E0B",
-    hoverColor: "#D97706",
-  },
-  {
-    icon: Target,
-    title: "Exam Focused Strategy",
-    description: "Specialized preparation with proven strategies for NEET & JEE success.",
-    color: "#8B5CF6",
-    hoverColor: "#7C3AED",
-  },
-  {
-    icon: Award,
-    title: "1000+ Selections",
-    description: "Consistent track record of excellent results year after year.",
-    color: "#EC4899",
-    hoverColor: "#DB2777",
-  },
-];
-
-const comparison = [
-  { feature: "PhD Qualified Director", us: true, others: false },
-  { feature: "25+ Years Experience", us: true, others: false },
-  { feature: "Technology Integration", us: true, others: true },
-  { feature: "Experienced Teachers (10-20 yrs)", us: true, others: false },
-  { feature: "99/100 Student Scores", us: true, others: false },
-  { feature: "Personal Attention", us: true, others: false },
-  { feature: "Proven Track Record (1000+ selections)", us: true, others: false },
+const nodes = [
+  { id: "concept", label: "Concept Clarity", angle: 0, description: "Crystal clear understanding of fundamentals" },
+  { id: "faculty", label: "Experienced Faculty", angle: 60, description: "PhD qualified teachers with 10-20+ years" },
+  { id: "attention", label: "Personal Attention", angle: 120, description: "Small batches for individual focus" },
+  { id: "tests", label: "Regular Tests", angle: 180, description: "Weekly assessments to track progress" },
+  { id: "doubt", label: "Doubt Solving", angle: 240, description: "Dedicated sessions for clearing doubts" },
+  { id: "results", label: "99/100 Results", angle: 300, description: "Students consistently score top marks" },
 ];
 
 const WhyChooseUsSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [hoveredCard, setHoveredCard] = useState(null);
+  const [hoveredNode, setHoveredNode] = useState(null);
+  const [centerHovered, setCenterHovered] = useState(false);
+
+  const radius = 200; // Radius for node placement
 
   return (
     <section
       id="why-us"
       ref={ref}
       data-testid="why-choose-us-section"
-      className="py-24 bg-gradient-to-b from-[#F8FAFC] via-white to-[#F0FDF4] relative overflow-hidden"
+      className="py-24 bg-gradient-to-b from-[#020617] via-[#0a1628] to-[#020617] relative overflow-hidden"
     >
-      {/* Colorful background blobs */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-[#00C9A7]/20 to-[#3B82F6]/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-br from-[#EF4444]/10 to-[#F59E0B]/10 rounded-full blur-3xl" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-[#8B5CF6]/5 to-[#EC4899]/5 rounded-full blur-3xl" />
+      {/* Background grid pattern */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `
+            linear-gradient(rgba(0, 201, 167, 0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0, 201, 167, 0.1) 1px, transparent 1px)
+          `,
+          backgroundSize: '50px 50px'
+        }} />
+      </div>
+
+      {/* Animated background glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#00C9A7]/5 rounded-full blur-[100px]" />
+      <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] bg-[#3B82F6]/5 rounded-full blur-[80px]" />
+      <div className="absolute bottom-1/4 right-1/4 w-[200px] h-[200px] bg-[#EF4444]/5 rounded-full blur-[60px]" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
@@ -82,118 +50,198 @@ const WhyChooseUsSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="inline-flex items-center gap-2 text-[#028090] font-semibold text-sm tracking-wider uppercase mb-4">
-            <Award className="w-4 h-4" />
+          <span className="inline-flex items-center gap-2 text-[#00C9A7] font-semibold text-sm tracking-wider uppercase mb-4">
+            <Sparkles className="w-4 h-4" />
             Why Choose Us
           </span>
-          <h2 className="text-4xl sm:text-5xl font-bold text-[#0B2545]" style={{ fontFamily: 'Outfit, sans-serif' }}>
+          <h2 className="text-4xl sm:text-5xl font-bold text-white" style={{ fontFamily: 'Outfit, sans-serif' }}>
             What Sets Us{" "}
-            <span className="bg-gradient-to-r from-[#00C9A7] via-[#3B82F6] to-[#EF4444] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#00C9A7] via-[#3B82F6] to-[#00C9A7] bg-clip-text text-transparent">
               Apart
             </span>
           </h2>
-          <p className="text-[#475569] mt-4 max-w-2xl mx-auto">
-            Unlike other institutes that only focus on technology, we combine <strong className="text-[#0B2545]">cutting-edge tech</strong> with{" "}
-            <strong className="text-[#0B2545]">decades of teaching experience</strong>.
-          </p>
         </motion.div>
 
-        {/* Features Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
-          {features.map((feature, index) => (
-            <motion.div
-              key={feature.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              data-testid={`feature-card-${index}`}
-              onMouseEnter={() => setHoveredCard(index)}
-              onMouseLeave={() => setHoveredCard(null)}
-              className="group cursor-pointer"
-            >
-              <motion.div 
-                className="bg-white rounded-3xl p-6 h-full border-2 shadow-lg transition-all duration-500 relative overflow-hidden"
-                style={{ 
-                  borderColor: hoveredCard === index ? feature.hoverColor : '#E2E8F0',
-                  boxShadow: hoveredCard === index ? `0 20px 40px -12px ${feature.color}40` : undefined
-                }}
-                whileHover={{ scale: 1.02, y: -5 }}
-              >
-                {/* Hover background gradient */}
-                <motion.div 
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  style={{ background: `linear-gradient(135deg, ${feature.color}10 0%, ${feature.hoverColor}05 100%)` }}
-                />
-                
-                <div className="relative z-10">
-                  <motion.div
-                    whileHover={{ scale: 1.15, rotate: 10 }}
-                    className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4 transition-all duration-300"
-                    style={{ backgroundColor: `${feature.color}20` }}
-                  >
-                    <feature.icon className="w-8 h-8" style={{ color: feature.color }} />
-                  </motion.div>
-                  <h3 className="text-lg font-bold text-[#0B2545] mb-2 group-hover:text-[#028090] transition-colors" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                    {feature.title}
-                  </h3>
-                  <p className="text-[#475569] text-sm leading-relaxed">
-                    {feature.description}
-                  </p>
+        {/* Network Diagram */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="relative flex items-center justify-center min-h-[600px]"
+        >
+          {/* SVG for connection lines */}
+          <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ overflow: 'visible' }}>
+            <defs>
+              <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#00C9A7" stopOpacity="0.3" />
+                <stop offset="50%" stopColor="#3B82F6" stopOpacity="0.6" />
+                <stop offset="100%" stopColor="#00C9A7" stopOpacity="0.3" />
+              </linearGradient>
+              <linearGradient id="lineGradientActive" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#00C9A7" stopOpacity="0.8" />
+                <stop offset="50%" stopColor="#3B82F6" stopOpacity="1" />
+                <stop offset="100%" stopColor="#00C9A7" stopOpacity="0.8" />
+              </linearGradient>
+            </defs>
+            {nodes.map((node, index) => {
+              const angle = (node.angle * Math.PI) / 180;
+              const x = Math.cos(angle) * radius;
+              const y = Math.sin(angle) * radius;
+              const isActive = hoveredNode === node.id || centerHovered;
+              
+              return (
+                <g key={node.id}>
+                  {/* Connection line */}
+                  <motion.line
+                    x1="50%"
+                    y1="50%"
+                    x2={`calc(50% + ${x}px)`}
+                    y2={`calc(50% + ${y}px)`}
+                    stroke={isActive ? "url(#lineGradientActive)" : "url(#lineGradient)"}
+                    strokeWidth={isActive ? 3 : 2}
+                    initial={{ pathLength: 0 }}
+                    animate={isInView ? { pathLength: 1 } : {}}
+                    transition={{ duration: 1, delay: 0.3 + index * 0.1 }}
+                  />
+                  {/* Animated pulse on line */}
+                  {isActive && (
+                    <motion.circle
+                      r="4"
+                      fill="#00C9A7"
+                      initial={{ x: "50%", y: "50%" }}
+                      animate={{
+                        x: [`calc(50%)`, `calc(50% + ${x}px)`],
+                        y: [`calc(50%)`, `calc(50% + ${y}px)`],
+                      }}
+                      transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                    >
+                      <animate attributeName="opacity" values="1;0" dur="1.5s" repeatCount="indefinite" />
+                    </motion.circle>
+                  )}
+                </g>
+              );
+            })}
+          </svg>
+
+          {/* Center Node - Student Success */}
+          <motion.div
+            onMouseEnter={() => setCenterHovered(true)}
+            onMouseLeave={() => setCenterHovered(false)}
+            whileHover={{ scale: 1.1 }}
+            className="absolute z-20 cursor-pointer"
+            style={{ left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}
+          >
+            <div className={`
+              w-40 h-40 rounded-full 
+              bg-gradient-to-br from-[#0a1628] to-[#020617]
+              border-2 transition-all duration-500
+              flex items-center justify-center text-center
+              ${centerHovered 
+                ? 'border-[#00C9A7] shadow-[0_0_60px_rgba(0,201,167,0.5)]' 
+                : 'border-[#00C9A7]/30 shadow-[0_0_30px_rgba(0,201,167,0.2)]'
+              }
+            `}>
+              <div>
+                <div className="text-3xl mb-1">🎯</div>
+                <div className="text-white font-bold text-lg" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                  Student
                 </div>
+                <div className="text-[#00C9A7] font-bold text-lg" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                  Success
+                </div>
+              </div>
+            </div>
+            {/* Outer glow ring */}
+            <motion.div
+              className="absolute inset-0 rounded-full border border-[#00C9A7]/20"
+              animate={{ scale: [1, 1.3, 1], opacity: [0.5, 0, 0.5] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              style={{ margin: '-10px' }}
+            />
+          </motion.div>
+
+          {/* Surrounding Nodes */}
+          {nodes.map((node, index) => {
+            const angle = (node.angle * Math.PI) / 180;
+            const x = Math.cos(angle) * radius;
+            const y = Math.sin(angle) * radius;
+            const isHovered = hoveredNode === node.id;
+
+            return (
+              <motion.div
+                key={node.id}
+                initial={{ opacity: 0, scale: 0 }}
+                animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
+                onMouseEnter={() => setHoveredNode(node.id)}
+                onMouseLeave={() => setHoveredNode(null)}
+                className="absolute z-10 cursor-pointer"
+                style={{
+                  left: `calc(50% + ${x}px)`,
+                  top: `calc(50% + ${y}px)`,
+                  transform: 'translate(-50%, -50%)',
+                }}
+              >
+                <motion.div
+                  whileHover={{ scale: 1.15 }}
+                  className={`
+                    w-28 h-28 rounded-2xl 
+                    bg-gradient-to-br from-[#0a1628] to-[#020617]
+                    border transition-all duration-500
+                    flex items-center justify-center text-center p-3
+                    ${isHovered 
+                      ? 'border-[#00C9A7] shadow-[0_0_40px_rgba(0,201,167,0.4)]' 
+                      : 'border-[#1e3a5f] shadow-[0_0_20px_rgba(0,201,167,0.1)]'
+                    }
+                  `}
+                >
+                  <span className={`text-xs font-semibold transition-colors duration-300 ${isHovered ? 'text-[#00C9A7]' : 'text-white/80'}`}>
+                    {node.label}
+                  </span>
+                </motion.div>
+
+                {/* Tooltip */}
+                {isHovered && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="absolute top-full mt-2 left-1/2 -translate-x-1/2 z-30 whitespace-nowrap"
+                  >
+                    <div className="bg-[#00C9A7] text-[#020617] px-4 py-2 rounded-xl text-sm font-medium shadow-lg">
+                      {node.description}
+                      <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-[#00C9A7] rotate-45" />
+                    </div>
+                  </motion.div>
+                )}
               </motion.div>
+            );
+          })}
+        </motion.div>
+
+        {/* Bottom Stats */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 1 }}
+          className="flex flex-wrap justify-center gap-8 mt-16"
+        >
+          {[
+            { value: "25+", label: "Years", color: "#00C9A7" },
+            { value: "5000+", label: "Students", color: "#3B82F6" },
+            { value: "99/100", label: "Avg Score", color: "#EF4444" },
+            { value: "1000+", label: "Selections", color: "#F59E0B" },
+          ].map((stat, index) => (
+            <motion.div
+              key={stat.label}
+              whileHover={{ scale: 1.1, y: -5 }}
+              className="text-center px-6 py-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm hover:border-white/30 transition-all cursor-pointer"
+            >
+              <div className="text-3xl font-bold" style={{ color: stat.color, fontFamily: 'Outfit, sans-serif' }}>
+                {stat.value}
+              </div>
+              <div className="text-white/60 text-sm">{stat.label}</div>
             </motion.div>
           ))}
-        </div>
-
-        {/* Comparison Table */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="bg-white rounded-3xl shadow-2xl border border-[#E2E8F0] overflow-hidden"
-        >
-          <div className="bg-gradient-to-r from-[#0B2545] via-[#134074] to-[#028090] p-6 text-white text-center">
-            <h3 className="text-2xl font-bold" style={{ fontFamily: 'Outfit, sans-serif' }}>
-              Bright Vision vs Other Institutes
-            </h3>
-            <p className="text-white/70 text-sm mt-1">See why we're the preferred choice</p>
-          </div>
-          <div className="p-6">
-            <div className="grid grid-cols-3 gap-4 mb-4 text-center font-semibold">
-              <div className="text-[#475569]">Feature</div>
-              <div className="text-[#00C9A7]">Bright Vision</div>
-              <div className="text-[#EF4444]">Others</div>
-            </div>
-            {comparison.map((item, index) => (
-              <motion.div
-                key={item.feature}
-                initial={{ opacity: 0, x: -20 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.3, delay: 0.5 + index * 0.05 }}
-                className="grid grid-cols-3 gap-4 py-3 border-t border-[#E2E8F0] items-center hover:bg-[#F8FAFC] transition-colors"
-              >
-                <div className="text-[#0B2545] font-medium text-sm">{item.feature}</div>
-                <div className="text-center">
-                  {item.us ? (
-                    <motion.div whileHover={{ scale: 1.2 }}>
-                      <CheckCircle className="w-6 h-6 text-[#00C9A7] mx-auto" />
-                    </motion.div>
-                  ) : (
-                    <XCircle className="w-6 h-6 text-[#9CA3AF] mx-auto" />
-                  )}
-                </div>
-                <div className="text-center">
-                  {item.others ? (
-                    <CheckCircle className="w-6 h-6 text-[#F59E0B] mx-auto" />
-                  ) : (
-                    <motion.div whileHover={{ scale: 1.2 }}>
-                      <XCircle className="w-6 h-6 text-[#EF4444] mx-auto" />
-                    </motion.div>
-                  )}
-                </div>
-              </motion.div>
-            ))}
-          </div>
         </motion.div>
       </div>
     </section>
